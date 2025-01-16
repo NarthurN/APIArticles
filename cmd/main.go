@@ -5,6 +5,7 @@ import (
 	"log"
 	"net/http"
 
+	"github.com/NarthurN/APIArticles/pkg/handlers"
 	"github.com/gorilla/mux"
 )
 
@@ -17,6 +18,7 @@ func handleRequests() {
 	// create a new instance of a mux router
 	myRouter := mux.NewRouter().StrictSlash(true)
 	myRouter.HandleFunc("/", homePage)
+	myRouter.HandleFunc("/articles", handlers.GetAllArticles).Methods(http.MethodGet)
 	fmt.Println("Server is listening ...")
 	log.Fatal(http.ListenAndServe(":8080", myRouter))
 }
