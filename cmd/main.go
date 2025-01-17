@@ -19,6 +19,7 @@ func handleRequests() {
 	myRouter := mux.NewRouter().StrictSlash(true)
 	myRouter.HandleFunc("/", homePage)
 	myRouter.HandleFunc("/articles", handlers.GetAllArticles).Methods(http.MethodGet)
+	myRouter.HandleFunc("/articles/{id}", handlers.GetArticle).Methods(http.MethodGet)
 	fmt.Println("Server is listening ...")
 	log.Fatal(http.ListenAndServe(":8080", myRouter))
 }
