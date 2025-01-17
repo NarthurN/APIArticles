@@ -22,7 +22,9 @@ func UpdateArticle(w http.ResponseWriter, r *http.Request) {
 	}
 
 	var updatedArticle models.Article
-	json.Unmarshal(body, &updatedArticle)
+	if err := json.Unmarshal(body, &updatedArticle); err != nil {
+		log.Printf("cannot unmarshal body in UpdatedArtcicle %v", err)
+	}
 
 	for index, article := range mocks.Articles {
 		if article.Id == id {
