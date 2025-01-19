@@ -22,6 +22,7 @@ func handleRequests() {
 	myRouter.HandleFunc("/articles/{id}", handlers.GetArticle).Methods(http.MethodGet)
 	myRouter.HandleFunc("/articles", handlers.AddArticle).Methods(http.MethodPost)
 	myRouter.HandleFunc("/articles/{id}", handlers.UpdateArticle).Methods(http.MethodPut)
+	myRouter.HandleFunc("/articles/{id}", handlers.DeleteArticleById).Methods(http.MethodDelete)
 	fmt.Println("Server is listening ...")
 	log.Fatal(http.ListenAndServe(":8080", myRouter))
 }
